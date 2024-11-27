@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            
+            <a class="btn btn-danger" href="/capacete" style="margin-bottom: 10px;">Cancelar</a>
+            <form th:action="@{/capacete/(form)}" 
+                method="POST" th:object="${capacete}"> 
+
+                <input type="hidden" th:field="*{id}"
+                        class="form-control">
+
+                <div class="form-group">
+                    <label for="txtnome">Nome:</label>
+                    <input type="text" th:field="*{nome}"
+                        class="form-control" id="txtnome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="txtvalor">Valor:</label>
+                    <input type="text" th:field="*{valor}"
+                        class="form-control" id="txtvalor" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="txtquantidade">quantidade:</label>
+                    <input type="number" th:field="*{quantidade}"
+                        class="form-control" id="txtquantidade" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtimg">Imagem:</label>
+                    <input type="text" th:field="*{imagem}"
+                        class="form-control" id="txtimg" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

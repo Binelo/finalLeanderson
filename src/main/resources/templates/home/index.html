@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <div class="header">
+                <h1>Ave, César!</h1>
+                <p>Onde a gestão de capacetes se torna uma verdadeira conquista.</p>
+            </div>
+            <div class="guarda-info">
+                <div class="info">
+                    <h2><i>"É melhor ser derrotado por dez mil inimigos do que ser vencido por um erro."</i> — <span>Júlio César</span></h2>
+                    <p>Enfrentar desafios é uma parte do jogo. Ser vencido por um erro, não. Com <span>César</span>, o controle é seu.</p>
+                </div>
+            </div>
+
+            <div id="conquistados">
+                <div>
+                    <h3>Capacetes conquistados: </h3>
+                    <span><p th:text="${totalCapacetes}"></p></span>
+                </div>
+                <div>
+                    <h3>Valor total dos capacetes: </h3>
+                    <span><p th:text="'R$ ' + ${valorTotalCapacetes} + ',00'"></p></span>
+                </div>
+            </div>
+        </main>
+        
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>

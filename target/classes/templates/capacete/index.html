@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+      <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="capacetes">
+            <div class="capacetes-grid container">
+                <div class="capacete-header">
+                    <a href="/capacete/novo" class="btn btn-primary">Novo</a>
+                    <div class="order">
+                        <button id="crescente"><img th:src="@{/img/crescente.svg}" alt=""></button>
+                        <button id="decrescente"><img th:src="@{/img/decrescente.svg}" alt=""></button>
+                    </div>
+                    <form onsubmit="searchByNome(event)">
+                        <input type="text" name="nome" placeholder="Pesquisa">
+                    </form>
+                    <button id="btnVoltar" class="btn btn-warning" style="display: none;" onclick="voltar()">Voltar</button>
+                </div>
+                <div class="guarda-capacetes" id="tabcapacete">
+                    <div class="um-capacete" th:each="umCapacete : ${listaCapacetes}">
+                        <div class="guarda-bg-capacete">
+                            <img th:src="@{${umCapacete.imagem}}" alt="Imagem do capacete" style="max-width: 175px; width:100%;">
+                            <div class="capacete-info">
+                                <h2 th:text="${umCapacete.nome}"></h2>
+                                <div>
+                                    <h4>Quantidade:</h4>
+                                    <p th:text="${umCapacete.quantidade}"></p>
+                                </div>
+                                <p th:text="'R$ ' + ${umCapacete.valor}"></p>
+                                    
+                            </div>
+                            <div class="capacete-btns">
+                                <a th:href="@{'/capacete/alterar/' + ${umCapacete.id}}" class="btn btn-warning">Alterar</a>
+                                <button class="btn btn-danger js-delete" th:data-id="${umCapacete.id}">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+            
+            
+            <!-- <table class="table" id="tabcapacete">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Valor</th>
+                        <th>Imagem</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="umCapacete : ${listaCapacetes}">
+                        <td th:text="${umCapacete.id}"></td>
+                        <td th:text="${umCapacete.nome}"></td>
+                        <td th:text="${umCapacete.valor}"></td>
+                        <img th:src="@{${umCapacete.imagem}}" alt="Imagem do capacete" style="max-width: 200px; width:100%;">
+                        <td>
+                            <a th:href="@{'/capacete/alterar/' + ${umCapacete.id}}" class="btn btn-warning">Alterar</a>
+                            <button class="btn btn-danger js-delete" th:data-id="${umCapacete.id}">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+
+        <div class="modal" id="modalcapacete">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Excluir Capacete
+                    </div>
+                    <div class="modal-body">
+                        <p>Confirma a exclusão do Capacete?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="btnnao">Não</button>
+                        <button class="btn btn-danger" id="btnsim">Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/scriptprod.js}"></script>
+
+    </body>
+</html>
